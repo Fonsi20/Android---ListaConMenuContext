@@ -60,14 +60,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-        Animal animalo = (Animal) lv.getAdapter().getItem(info.position);
-        nombre=animalo.getNombre();
+        animalo = (Animal) lv.getAdapter().getItem(info.position);
+        nombre = animalo.getNombre();
         menu.setHeaderTitle(animalo.getNombre());
 
         inflater.inflate(R.menu.menu_contextual, menu);
-
-
-
     }
 
     @Override
