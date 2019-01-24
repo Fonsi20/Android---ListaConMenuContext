@@ -9,8 +9,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     private Animal[] anima;
     private Animal animalo;
     private String nombre;
+    private ArrayList<Animal> animaList;
+    private ArrayAdapter<> adaptador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +44,9 @@ public class MainActivity extends AppCompatActivity {
             anima[i] = ani;
         }
 
-        AdaptadorPersonalizado adaptador = new AdaptadorPersonalizado(this, anima);
+        animaList.addAll(Arrays.asList(anima));
+
+        AdaptadorPersonalizado adaptador = new AdaptadorPersonalizado(this, animaList);
         lv.setAdapter(adaptador);
 
         registerForContextMenu(lv);
@@ -71,8 +79,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean onContextItemSelected(MenuItem item) {
         int id = item.getItemId();
 
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
         switch (id) {
             case R.id.item1:
+                adaptador.remove(adaptador.getItem(info.position));
                 Toast.makeText(this, "Opción: " + item.getTitle() + " con nombre " + nombre, Toast.LENGTH_SHORT).show();
                 return true;
 

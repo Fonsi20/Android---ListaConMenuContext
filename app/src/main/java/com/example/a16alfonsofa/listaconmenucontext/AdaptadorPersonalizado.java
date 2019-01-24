@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * Created by a16alfonsofa on 15/01/2019.
  */
@@ -17,9 +19,9 @@ import android.widget.TextView;
 public class AdaptadorPersonalizado extends ArrayAdapter {
 
     private Activity context;
-    private Animal[] ani;
+    private ArrayList ani;
 
-    public AdaptadorPersonalizado(Activity context, Animal[] ani) {
+    public AdaptadorPersonalizado(Activity context, ArrayList ani) {
         super(context, R.layout.fila_layout, ani);
         this.context = context;
         this.ani = ani;
@@ -60,9 +62,9 @@ public class AdaptadorPersonalizado extends ArrayAdapter {
             fila.setBackgroundColor(context.getResources().getColor(R.color.grey));
         }
 
-        holder.txAnimal.setText(ani[position].getNombre());
-        holder.txDescrop.setText(ani[position].getDesc());
-        holder.imagen.setImageDrawable(ani[position].getImg());
+        holder.txAnimal.setText(ani.get(position).getNombre());
+        holder.txDescrop.setText(ani.get(position).getDesc());
+        holder.imagen.setImageDrawable.(ani.get(position).getImg());
 
         return fila;
     }
